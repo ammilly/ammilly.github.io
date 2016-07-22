@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Win7 Git bash 出现Permission denied (publickey)错误
-tags: JavaScript JS context
+tags: shell git bash github permission
 date: 2016-07-22 13:50:00 +800
 ---
 
@@ -73,7 +73,37 @@ The `ssh-add` command should print out a long string of numbers and letters. If 
 
 ## Auto-launching ssh-agent on Git for Windows
 
-```bash
+If you want to auto-start ssh-agent and add the private key you wanted, you can config your `~/.bashrc` file like below:
 
+```bash
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add ~/.ssh/github-amy
+    ssh-add ~/.ssh/github_rsa
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    ssh-add ~/.ssh/github-amy
+    ssh-add ~/.ssh/github_rsa
+fi
+
+unset env
 ```
 
+***Tip: If your private keys are not stored in ~/.ssh/id_rsa or ~/.ssh/id_dsa, you must add their paths with the ssh-add command so that your SSH authentication agent knows where to find them. For example: `ssh-add ~/.my_other_ssh/id_rsa` ***
+
+Now, when you first run Git Bash, your ssh-agent and identities was started automatically.
+The `ssh-agent` process will continue to run until you log out, shut down your computer or kill the process.
+
+If you want `ssh-agent` to forget your key after some time, you can configure it to do so by running `ssh-add -t <seconds>`.
