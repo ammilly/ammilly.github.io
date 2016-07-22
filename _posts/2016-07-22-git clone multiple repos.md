@@ -107,3 +107,9 @@ Now, when you first run Git Bash, your ssh-agent and identities was started auto
 The `ssh-agent` process will continue to run until you log out, shut down your computer or kill the process.
 
 If you want `ssh-agent` to forget your key after some time, you can configure it to do so by running `ssh-add -t <seconds>`.
+
+## 参考
+
+#### GitHub Help
+[Working with SSH key passphrases](https://help.github.com/articles/working-with-ssh-key-passphrases/)
+[Error: Permission denied (publickey)](https://help.github.com/articles/error-permission-denied-publickey/)
