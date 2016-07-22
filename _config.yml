@@ -4,9 +4,9 @@
 # url: http://localhost:4000
 # baseurl: ""
 url: http://ttskch.github.io
-baseurl: /jekyll-tch-theme
-title: Your name
-description: Some descriptions of yourself.
+baseurl: 
+title: Amy
+description: Amy's learning & practices.
 avatar: /assets/img/ogp.png
 # favicon: /favicon.ico
 favicon: /assets/img/ogp.png
