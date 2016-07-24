@@ -172,6 +172,9 @@
 
     .comments {
         margin-bottom: $margin;
+        #placement-bottom {
+            display: none;
+        }
     }
 
     .pagination {
