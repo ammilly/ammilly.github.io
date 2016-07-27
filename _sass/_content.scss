@@ -172,6 +172,13 @@
 
     .comments {
         margin-bottom: $margin;
+        #placement-bottom {
+            display: none;
+            .post-list {
+                height: 0;
+                visibility: hidden;
+            }
+        }
     }
 
     .pagination {

@@ -47,7 +47,8 @@ permalink: pretty
 # Scripts.
 #
 google_analytics: # e.g. UA-000000-01
-disqus:
+baidu_analytics: true
+disqus: true
 
 #
 # Localizations.
