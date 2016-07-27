@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Woring with Git
-tags: JavaScript JS markable double
+tags: git
 date: 2016-07-27 13:50:00 +800
 ---
 
