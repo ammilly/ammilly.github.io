@@ -119,3 +119,4 @@ After this, the remote master will recieve a merge request from you, the owner w
 ## References
 
 [Git Branching Remote Branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
+[git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
