@@ -1,4 +1,11 @@
-# jekyll-tch-theme
+# Amy's blog
+
+> learning and practising places.
+
+## To be a better one.
+
+
+# Using jekyll-tch-theme
 
 A simple and customizable theme for Jekyll.
 
@@ -29,27 +36,4 @@ A simple and customizable theme for Jekyll.
 2. Rename the repository from `jekyll-tch-theme` to `{username}.github.io` ([learn more](https://pages.github.com/))
 3. Modify `_config.yml`
 4. Modify `_sass/base/_variables.scss` if you need to change colors or font sizes
-5. Add new posts into `_posts/` :smiley:
-
-## Demo
-
-You can see live demo at below:
-
-* https://ttskch.github.io/jekyll-tch-theme/
-
-## Thanks for using :wink:
-
-* http://ttskch.github.io
-* http://sitaramshelke.github.io
-* http://jffourmond.github.io
-* http://vbflash8.github.io
-* http://luqitao.github.io
-* http://harusametime.github.io
-* http://gitzxon.github.io
-* http://hutsonlu.github.io
-* http://k0-1.github.io
-* http://anthonygore.github.io
-* http://getjsdojo.github.io
-* http://georgezhuo.github.io
-
-Please PR if you want to add your blog.
+5. Add new posts into `_posts/`
