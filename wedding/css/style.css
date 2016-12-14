@@ -1,0 +1,80 @@
+/* All tag */
+* { margin: 0; padding: 0; border: none; font-size: 12px; font-family: 'Microsoft Yahei'; }
+html, body { height: 100%; overflow: hidden; }
+
+/* music */
+.music { position: fixed; top: 3vw; right: 4vw; z-index: 5; width: 15vw; height: 15vw; border: 4px solid #ef1639; border-radius: 50%; background-color: #fff; }
+.music > img:first-of-type { position: absolute; top: 24%; right: 2.5%; width: 28.421%; z-index: 5; }
+.music > img:last-of-type { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 79%; margin: auto; }
+.music > img.play {
+	-webkit-animation: spin 4s linear infinite;
+			animation: spin 4s linear infinite;
+}
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+	}
+}
+@keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+	}
+}
+/* page background */
+.page { position: absolute; width: 100%; height: 100%; }
+.page > .bg { position: absolute; height: 100%; width: 100%; z-index: -1; }
+
+/* page1 */
+#page1 {
+    display: block;
+    -webkit-transition: .5s;
+    		transition: .5s;
+}
+#page1.fadeIn {  -webkit-transform: translate(0, -100%); transform: translate(0, -100%); }
+#page1 > .bg { background: url(../images/cover_love.png) no-repeat center center; background-size: 100%; }
+
+/* page2 */
+#page2 { display: none; -webkit-transition: .5s; transition: .5s; }
+#page2.fadeOut {
+	opacity: .3;
+	-webkit-transform: translate(0, -100%);
+			transform: translate(0, -100%);
+}
+#page2 > .bg { background: url(../images/img-back.jpg) no-repeat center center; background-size: 100%;}
+
+/* page3 */
+#page3 {
+    display: none;
+    -webkit-transition: .5s;
+    		transition: .5s;
+}
+#page3.fadeIn { -webkit-transform: translate(0, -100%); transform: translate(0, -100%); }
+#page3.fadeOut {
+	opacity: .3;
+	-webkit-transform: translate(0, -100%);
+			transform: translate(0, -100%);
+}
+#page3 > .bg { background: url(../images/img-kiss.jpg) no-repeat center center; background-size: 100%;}
+
+/* page4 */
+#page4 {
+    display: none;
+    -webkit-transition: .5s;
+    		transition: .5s;
+}
+#page4.fadeIn {
+	opacity: .3;
+	-webkit-transform: translate(0, -100%);
+			transform: translate(0, -100%);
+}
+#page4 > .bg { background: url(../images/img-house.jpg) no-repeat center center; background-size: 100%; }
