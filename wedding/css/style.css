@@ -31,50 +31,18 @@ html, body { height: 100%; overflow: hidden; }
 	}
 }
 /* page background */
-.page { position: absolute; width: 100%; height: 100%; }
-.page > .bg { position: absolute; height: 100%; width: 100%; z-index: -1; }
+.slide { -webkit-transition: top 1s linear; transition: top 1s linear; }
+.page { position: relative; top: 0; width: 100%; height: 100%; }
+.page > .bg { height: 100%; width: 100%; z-index: -1; }
 
 /* page1 */
-#page1 {
-    display: block;
-    -webkit-transition: .5s;
-    		transition: .5s;
-}
-#page1.fadeIn {  -webkit-transform: translate(0, -100%); transform: translate(0, -100%); }
 #page1 > .bg { background: url(../images/cover_love.png) no-repeat center center; background-size: 100%; }
 
 /* page2 */
-#page2 { display: none; -webkit-transition: .5s; transition: .5s; }
-#page2.fadeOut {
-	opacity: .3;
-	-webkit-transform: translate(0, -100%);
-			transform: translate(0, -100%);
-}
 #page2 > .bg { background: url(../images/img-back.jpg) no-repeat center center; background-size: 100%;}
 
 /* page3 */
-#page3 {
-    display: none;
-    -webkit-transition: .5s;
-    		transition: .5s;
-}
-#page3.fadeIn { -webkit-transform: translate(0, -100%); transform: translate(0, -100%); }
-#page3.fadeOut {
-	opacity: .3;
-	-webkit-transform: translate(0, -100%);
-			transform: translate(0, -100%);
-}
 #page3 > .bg { background: url(../images/img-kiss.jpg) no-repeat center center; background-size: 100%;}
 
 /* page4 */
-#page4 {
-    display: none;
-    -webkit-transition: .5s;
-    		transition: .5s;
-}
-#page4.fadeIn {
-	opacity: .3;
-	-webkit-transform: translate(0, -100%);
-			transform: translate(0, -100%);
-}
 #page4 > .bg { background: url(../images/img-house.jpg) no-repeat center center; background-size: 100%; }
