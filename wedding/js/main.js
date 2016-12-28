@@ -4,6 +4,7 @@ window.onload = function() {
     	page2 = document.getElementById('page2'),
     	page3 = document.getElementById('page3'),
     	page4 = document.getElementById('page4'),
+        page5 = document.getElementById('page5'),
     	music = document.getElementById('music'),
     	audio = document.getElementsByTagName('audio')[0];
 
@@ -99,7 +100,7 @@ let slider = function (domNode) {
                         if(this.index !== 0) this.index -= 1;
                     }else if(endPos.y < -10){
                     	// alert('下移');
-                        if(this.index !== 3) this.index += 1;
+                        if(this.index !== 4) this.index += 1;
                     }
                 }
                 // this.icon[this.index].className = 'curr';
