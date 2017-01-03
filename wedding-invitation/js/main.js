@@ -21,28 +21,11 @@ window.onload = function() {
     	}
     }, false);
 
-    // page1
-    // page1.addEventListener('touchstart', event => {
-    // 	page1.style.display  = 'none';
-    // 	page2.style.display = 'block';
-    // 	page3.style.display = 'block';
-    // 	page3.style.top     = '100%';
+    // slider(pages);
 
-    // 	setTimeout(() => {
-    // 		page2.setAttribute('class', 'page fadeOut');
-    // 		page3.setAttribute('class', 'page fadeIn');
-    // 		page4.style.display = 'block';
-    // 		page4.style.top		= '100%';
-    // 		setTimeout(() => {
-    // 			page3.style.top     = '0';
-    // 			page3.setAttribute('class', 'page fadeOut');
-    // 			page4.setAttribute('class', 'page fadeIn');
-    // 		}, 3000);
-    // 		// page4.setAttribute('class', 'page fadeOut');
-    // 		// page4.style.top		= '100%';
-    // 	}, 5500);
-    // }, false);
-    slider(pages);
+    $('#pages .page').swipeUp(function(event) {
+      alert("upload");
+    })
 };
 
 let slider = function (domNode) {
