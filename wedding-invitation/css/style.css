@@ -1,6 +1,9 @@
 /* All tag */
 * { margin: 0; padding: 0; border: none; font-size: 12px; font-family: 'Microsoft Yahei'; }
 html, body { height: 100%; overflow: hidden; }
+.fadeOut {
+	-webkit-transition:1s linear; transition:1s linear;
+}
 
 /* music */
 .music { position: fixed; top: 3vw; right: 4vw; z-index: 5; width: 10vw; height: 10vw;}

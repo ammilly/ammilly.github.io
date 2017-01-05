@@ -24,8 +24,22 @@ window.onload = function() {
     // slider(pages);
 
     $('#pages .page').swipeUp(function(event) {
-      alert("upload");
-    })
+      // alert("upload");
+        let target = event.currentTarget,
+            id = target.id,
+            index = parseInt(id.substring(id.length - 1));
+
+        if(index < 5) {
+            // $(target).hide(500);
+            // $('#page' + (index + 1)).show(600);
+            $(target).removeClass('fadeOut');
+            $('#page' + (index + 1)).addClass('fadeOut');
+        } else {
+            // $('#page1').show();
+            $('#page1').addClass('fadeOut');
+        }
+
+    });
 };
 
 let slider = function (domNode) {
