@@ -100,45 +100,28 @@ weddingCard.module = function(result) {
 }
 
 weddingCard.data = function() {
-    // var _idv = weddingCard.getUrlParams();
-    // weddingCard.cardId = _idv['card_id'];
-    // weddingCard.speechId = _idv['speech_id'];
-    // weddingCard.test = _idv['test'];
-    // weddingCard.isPreview = _idv['isPreview'];
+    weddingCard.url = weddingCard.api.card + weddingCard.cardId;
+    if (weddingCard.speechId) { weddingCard.url += '/speech_id/' + weddingCard.speechId; }
 
-    // if (weddingCard.test == 'page') {
-    //     weddingCard.url = weddingCard.api.page + weddingCard.cardId
-    // } else if (weddingCard.test == 'template') {
-    //     weddingCard.url = weddingCard.api.template + weddingCard.cardId
-    // } else {
-        weddingCard.url = weddingCard.api.card + weddingCard.cardId;
-        if (weddingCard.speechId) { weddingCard.url += '/speech_id/' + weddingCard.speechId; }
-    // }
 
     weddingCard.imgCont = [];
-    $.ajax({
-        url: weddingCard.url,
-        type: 'get',
-        success: function(result) {
-            weddingCard.dataD = JSON.stringify(result.data.page);
-            weddingCard.module(result);
-            weddingCard.base();
+    weddingCard.dataD = JSON.stringify(result.data.page);
+    weddingCard.module(result);
+    weddingCard.base();
 
-            result.data.page.forEach(function(val, index) {
-                console.log(val)
-                val.layout.elements.forEach(function(v, i) {
-                    if (weddingCard.cardId == 'NTUxNDMyZmlyZV9jbG91ZA')
-                        weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/100')
-                    else
-                        weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/80')
-                })
-            })
-            console.log(weddingCard.imgCont)
-            weddingCard.loading(weddingCard.imgCont, function() {
-                console.log('onloadimg完成')
-            })
-        }
+    result.data.page.forEach(function(val, index) {
+        console.log(val)
+        val.layout.elements.forEach(function(v, i) {
+            if (weddingCard.cardId == 'NTUxNDMyZmlyZV9jbG91ZA')
+                weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/100')
+            else
+                weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/80')
+        })
     })
+    console.log(weddingCard.imgCont)
+    weddingCard.loading(weddingCard.imgCont, function() {
+        console.log('onloadimg完成')
+    });
 };
 
 weddingCard.rans = function(len) {
@@ -336,7 +319,6 @@ weddingCard.base = function() {
                 })
                 weddingCard.make++;
             }
-
         })
 
 
@@ -385,7 +367,6 @@ weddingCard.base = function() {
             setTimeout(function() {
                 weddingCard.touchBody = '0';
             }, 1000)
-
         })
 
         $(document).on('touchend', '.feedback_info_status', function() {
@@ -424,9 +405,7 @@ weddingCard.base = function() {
             $('.reply_a').text(_statusC);
             $('.reply_a').attr('status', _status);
             setStatus();
-
-
-        })
+        });
 
         $(document).on('touchend', '.numbtn', function() {
             var _status = $(this).attr('status'),
