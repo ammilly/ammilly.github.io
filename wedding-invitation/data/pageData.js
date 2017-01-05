@@ -474,7 +474,7 @@ let result = {
 			}
 		}],
 		page_icon: 'http://qnm.hunliji.com/FmIeMK8-PChQmcRZc3l5UmeVSXUg',
-		share_img: '../images/front-page'
+		share_img: "http://qnm.hunliji.com/FqgXl36BGPlnvS2EMz-LZ3dPbfbR"
 	},
 	status: {
 		RetCode: 0,
