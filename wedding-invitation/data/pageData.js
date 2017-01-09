@@ -123,7 +123,7 @@ let result = {
 		},
 		guest_template: 1,
 		music: {
-			audio: 'http://qnm.hunliji.com/n-LvZJP0teoKD9I40PDyXmbhuJQ=/FoNcapNF7tg69bcdyfaDCEValDv_.mp3',
+			audio: 'audio/Love-Paradise_chl.mp3',
 			img: ''
 		},
 		page: [{
