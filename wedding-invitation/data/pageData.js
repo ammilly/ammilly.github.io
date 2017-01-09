@@ -124,7 +124,7 @@ let result = {
 		guest_template: 1,
 		music: {
 			audio: 'http://qnm.hunliji.com/n-LvZJP0teoKD9I40PDyXmbhuJQ=/FoNcapNF7tg69bcdyfaDCEValDv_.mp3',
-			img: 'http://qnm.hunliji.com/Fs4CiLxP5EWI2sdUpQu4t0480LD7'
+			img: ''
 		},
 		page: [{
 			id: 13298389,
