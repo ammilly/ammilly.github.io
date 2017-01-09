@@ -124,7 +124,7 @@ let result = {
 		guest_template: 1,
 		music: {
 			audio: 'audio/Love-Paradise_chl.mp3',
-			img: ''
+			img: 'images/music_icon.png'
 		},
 		page: [{
 			id: 13298389,

@@ -263,9 +263,10 @@ weddingCard.base = function() {
                         <div class="feedback_msg_txt" style="background:' + weddingCard.reBgcolor + '">\
                             <textarea id="msg_textarea" style="color:' + weddingCard.valColor + '">收到请帖，祝你们白头偕老</textarea>\
                         </div>\
+                        <h3 style="color:' + weddingCard.fontColor + ';margin-top:8px;">新娘电话：18910987948</h3>\
+                        <h3 style="color:' + weddingCard.fontColor + ';margin-top:8px;">新郎电话：15221826915</h3>\
                         <div class="ajaxBtn">\
                             <a class="ajaxBtn_send" style="width:100%;background:' + weddingCard.sendColor + '">立即发送</a>\
-                        </div><div class="appdown" style="display:block;width:100%;text-align:center;margin:8px auto 0;padding:8px 0;color:#fff;background:' + weddingCard.hotelColor + '"><i>制作属于你的专属请帖</i></div>\
                     </div><a style="position:fixed;top:' + weddingCard.winW * 1.077 + 'px;right:0;width:27px;background: transparent;" class="ajaxBtn_map"><img src="http://qnm.hunliji.com/o_1akibk24386k1lk81tdn8ihfo87.png"></a>') //weddingCard.iconColor 
 
         var _pt = (weddingCard.winW * 1.63 - weddingCard.winH) / (10 / 3),
@@ -434,7 +435,7 @@ weddingCard.base = function() {
         $(document).on('touchend', '.ajaxBtn_send', function() {
             if (weddingCard.numSend < 1 && weddingCard.msgopend == 0) {
                 weddingCard.numSend++;
-                replyData()
+                replyData();
             }
         })
 
@@ -445,22 +446,22 @@ weddingCard.base = function() {
                 weddingCard.bless = $('#msg_textarea').val();
                 weddingCard.replya = $('.reply_a').attr('status');
                 weddingCard.replyb = $('.reply_b').attr('status');
-                console.log(weddingCard.name, weddingCard.bless)
+                console.log(weddingCard.name, weddingCard.bless);
                 replySend({
                     card_id: weddingCard.cardId,
                     name: weddingCard.name,
                     state: weddingCard.replya,
                     wish_language: weddingCard.bless,
                     count: weddingCard.replyb
-                })
+                });
             } else {
                 weddingCard.msg('请填写相关信息');
-                setTimeout(function() { weddingCard.numSend-- }, 300)
+                setTimeout(function() { weddingCard.numSend-- }, 300);
             }
         }
 
         function replySend(_data) {
-            console.log(1)
+            console.log("Send data to backend server.");
             $.ajax({
                 url: weddingCard.api.reply,
                 type: 'post',
@@ -697,7 +698,7 @@ weddingCard.api = {
     'page': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/previewPage/id/',
     'template': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/previewTemplate/id/',
     'card': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/pageListByCardId/id/',
-    'reply': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/reply',
+    'reply': 'http://112.74.99.162:8088/wedding.php',//'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/reply',
     'sdkData': 'https://www.hunliji.com/v1/api/app/tracker/batch.json'
 }
 
