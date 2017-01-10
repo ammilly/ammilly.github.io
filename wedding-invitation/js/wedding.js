@@ -238,15 +238,6 @@ weddingCard.base = function() {
                                 <input id="feedName" value="名字" type="text" style="color:' + weddingCard.valColor + '">\
                             </div>\
                             <div class="wline"></div></div>\
-                        <div class="feedback_info_status">\
-                            <div class="feed_bd">\
-                                <em style="color:' + weddingCard.fontColor + '">是否赴宴</em>\
-                                <span class="feedstatus reply_a" status="0" style="color:' + weddingCard.valColor + '">赴宴</span>\
-                            </div>\
-                            <i class="status_more" style="background:' + weddingCard.iconColor + '">\
-                                <img style="width:100%" src="http://qnm.hunliji.com/o_1ag7984u73ap1drhljdll71vmd1a.png">\
-                            </i>\
-                            <div class="wline"></div></div>\
                         <div class="feedback_info_num">\
                             <div class="feed_bd">\
                                 <em style="color:' + weddingCard.fontColor + '">赴宴人数</em>\
@@ -448,31 +439,36 @@ weddingCard.base = function() {
                 weddingCard.replyb = $('.reply_b').attr('status');
                 console.log(weddingCard.name, weddingCard.bless);
                 replySend({
-                    card_id: weddingCard.cardId,
+                    // card_id: weddingCard.cardId,
                     name: weddingCard.name,
-                    state: weddingCard.replya,
-                    wish_language: weddingCard.bless,
-                    count: weddingCard.replyb
+                    // state: weddingCard.replya,
+                    bless: weddingCard.bless,
+                    num: weddingCard.replyb
                 });
             } else {
                 weddingCard.msg('请填写相关信息');
                 setTimeout(function() { weddingCard.numSend-- }, 300);
             }
         }
+        function callbackFunc(result) {
+            console.log(result);
+        }
 
         function replySend(_data) {
             console.log("Send data to backend server.");
             $.ajax({
                 url: weddingCard.api.reply,
-                type: 'post',
                 data: _data,
+                type: 'get',
+                dataType: 'jsonp',
+                jsonpCallback: 'callbackFunc',
                 success: function(result) {
-                    console.log(result)
+                    console.log(result);
                     weddingCard.numSend--;
-                    if (result.meta.status == 200) { weddingCard.msg('发送成功') }
+                    if (result.errno === 0 && result.msg === 'success') { weddingCard.msg('发送成功'); }
 
                 }
-            })
+            });
         }
 
         function setStatus() {
