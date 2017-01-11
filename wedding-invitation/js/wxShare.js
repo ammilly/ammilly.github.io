@@ -65,24 +65,8 @@ var wxShare = function() {
 
         //初始化
         setWeiXinData: function(args) {
-            var config = {
-                appId: '',
-                imgUrl: 'http://qnm.hunliji.com/o_1a8dlm230v0l146fes31311j4c7.png',
-                link: location.href,
-                desc: '国内最佳跨平台婚礼APP，婚礼筹备、电子请帖、婚礼故事等功能帮您打造完美婚礼，谱写婚礼故事。',
-                title: '婚礼纪--打造完美婚礼！',
-                timelineTitle: ''
-            };
-            $.each(args, function(key, value) {
-                if (value.length == 0) {
-                    args[key] = config[key]
-                }
-            });
-            config = $.extend({}, config, args);
+            var config = args;
 
-            if (config['timelineTitle'].length == 0) {
-                config['timelineTitle'] = config['desc']
-            }
             var wxDataHtml = [
                 'var wxData = {',
                 '"appId": "' + config.appId + '",',

@@ -100,10 +100,6 @@ weddingCard.module = function(result) {
 }
 
 weddingCard.data = function() {
-    weddingCard.url = weddingCard.api.card + weddingCard.cardId;
-    if (weddingCard.speechId) { weddingCard.url += '/speech_id/' + weddingCard.speechId; }
-
-
     weddingCard.imgCont = [];
     weddingCard.dataD = JSON.stringify(result.data.page);
     weddingCard.module(result);
@@ -112,9 +108,9 @@ weddingCard.data = function() {
     result.data.page.forEach(function(val, index) {
         console.log(val)
         val.layout.elements.forEach(function(v, i) {
-            if (weddingCard.cardId == 'NTUxNDMyZmlyZV9jbG91ZA')
-                weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/100')
-            else
+            // if (weddingCard.cardId == 'NTUxNDMyZmlyZV9jbG91ZA')
+            //     weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/100')
+            // else
                 weddingCard.imgCont.push(v.img + '?imageView2/2/w/640/q/80')
         })
     })
@@ -241,7 +237,7 @@ weddingCard.base = function() {
                         <div class="feedback_info_num">\
                             <div class="feed_bd">\
                                 <em style="color:' + weddingCard.fontColor + '">赴宴人数</em>\
-                                <span class="feedstatus reply_b" status="1" style="color:' + weddingCard.valColor + '">1人</span>\
+                                <span class="feedstatus reply_b" status="2" style="color:' + weddingCard.valColor + '">1人</span>\
                             </div>\
                             <i class="num_more" style="background:' + weddingCard.iconColor + '">\
                                 <img style="width:100%" src="http://qnm.hunliji.com/o_1ag7984u73ap1drhljdll71vmd1a.png">\
@@ -294,24 +290,7 @@ weddingCard.base = function() {
                 $('.reply_b').text(weddingCard.numcont);
                 $('.reply_b').attr('status', weddingCard.numtxt);
             }
-        }, 100)
-        weddingCard.make = 0;
-        $(document).on('touchend click touchstart', '.appdown', function() {
-            if (weddingCard.make == 0) {
-                weddingCard.sdkData({
-                    action: 'make',
-                    eventable_type: 'CardV3',
-                    additional: {
-                        ip: weddingCard.ip,
-                        card_id: weddingCard.cardId,
-                        num: weddingCard.rans(32)
-                    }
-                }, function() {
-                    location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=me.suncloud.marrymemo&ckey=CK1329239858554";
-                })
-                weddingCard.make++;
-            }
-        })
+        }, 100);
 
 
         $(document).on('touchstart', '#msg_textarea', function() {
@@ -359,14 +338,6 @@ weddingCard.base = function() {
             setTimeout(function() {
                 weddingCard.touchBody = '0';
             }, 1000)
-        })
-
-        $(document).on('touchend', '.feedback_info_status', function() {
-            if (weddingCard.statusCard != 1) {
-                statusCard();
-                $('#feedName').blur();
-                $('#msg_textarea').blur();
-            }
         })
 
         $(document).on('touchend', '.bgCard', function() {
@@ -428,40 +399,33 @@ weddingCard.base = function() {
                 weddingCard.numSend++;
                 replyData();
             }
-        })
+        });
 
 
         function replyData() {
             if ($('#feedName').val() != '' && $('#feedName').val() != '名字' && $('#msg_textarea').val() != '') {
                 weddingCard.name = $('#feedName').val();
+                weddingCard.num = $('.reply_b').attr('status') - 1;
                 weddingCard.bless = $('#msg_textarea').val();
-                weddingCard.replya = $('.reply_a').attr('status');
-                weddingCard.replyb = $('.reply_b').attr('status');
-                console.log(weddingCard.name, weddingCard.bless);
                 replySend({
-                    // card_id: weddingCard.cardId,
                     name: weddingCard.name,
-                    // state: weddingCard.replya,
                     bless: weddingCard.bless,
-                    num: weddingCard.replyb
+                    num: weddingCard.num
                 });
             } else {
                 weddingCard.msg('请填写相关信息');
                 setTimeout(function() { weddingCard.numSend-- }, 300);
             }
         }
-        function callbackFunc(result) {
-            console.log(result);
-        }
 
         function replySend(_data) {
-            console.log("Send data to backend server.");
+            console.log("Save data.");
             $.ajax({
                 url: weddingCard.api.reply,
                 data: _data,
                 type: 'get',
                 dataType: 'jsonp',
-                jsonpCallback: 'callbackFunc',
+                jsonpCallback: 'callback',
                 success: function(result) {
                     console.log(result);
                     weddingCard.numSend--;
@@ -481,34 +445,15 @@ weddingCard.base = function() {
             }, 600)
         }
 
-        function statusCard() {
-            weddingCard.statusCard = 1;
-            var _html = '<div class="bgCard" style="position:fixed;top:0;left:0;bottom:0;right:0;-webkit-transition-duration:600ms;opacity:0;z-index:99998;background:rgba(0,0,0,0.5)"></div><div class="status_card" style="text-align:center;position:fixed;bottom:0;left:0;padding:' + weddingCard.winH * 0.05 + 'px 0;width:100%;background:#fff;z-index:99999;-webkit-transition-duration:600ms;-webkit-transform:translate3d(0,' + weddingCard.winH + 'px,0)">\
-                        <p class="statusbtn" status="0">赴宴</p>\
-                        <p class="statusbtn" style="margin:0 15px" status="1">待定</p>\
-                        <p class="statusbtn" status="2">有事</p>\
-                    </div>';
-            $('body').append(_html);
-            setTimeout(function() {
-                $('.status_card').css({ '-webkit-transform': 'translate3d(0, 0, 0)' });
-                $('.bgCard').css({ 'opacity': '1' });
-                if (weddingCard.statustxt) {
-                    $('.statusbtn').eq(weddingCard.statustxt).addClass('ept')
-                } else {
-                    $('.statusbtn').eq(0).addClass('ept')
-                }
-            }, 100)
-        }
-
         function numMore() {
             weddingCard.statusCard = 1;
             var _html = '<div class="bgCard" style="position:fixed;top:0;left:0;bottom:0;right:0;-webkit-transition-duration:600ms;opacity:0;z-index:99998;background:rgba(0,0,0,0.5)"></div><div class="status_card" style="position:fixed;bottom:0;left:0;padding:' + weddingCard.winH * 0.05 + 'px 0;width:100%;text-align:center;background:#fff;z-index:99999;-webkit-transition-duration:600ms;-webkit-transform:translate3d(0,' + weddingCard.winH + 'px,0)">\
-                        <p class="numbtn" status="1" >1人</p>\
-                        <p class="numbtn" status="2" >2人</p>\
-                        <p class="numbtn" status="3" >3人</p><br>\
-                        <p class="numbtn" status="4" style="margin-top:16px;">4人</p>\
-                        <p class="numbtn" status="5" style="margin-top:16px;">5人</p>\
-                        <p class="numbtn" status="6" style="margin-top:16px;">6人</p>\
+                        <p class="numbtn" status="1" >0人</p>\
+                        <p class="numbtn" status="2" >1人</p>\
+                        <p class="numbtn" status="3" >2人</p><br>\
+                        <p class="numbtn" status="4" style="margin-top:16px;">3人</p>\
+                        <p class="numbtn" status="5" style="margin-top:16px;">4人</p>\
+                        <p class="numbtn" status="6" style="margin-top:16px;">5人</p>\
                     </div>';
             $('body').append(_html);
             setTimeout(function() {
@@ -517,7 +462,7 @@ weddingCard.base = function() {
                 if (weddingCard.numtxt) {
                     $('.numbtn').eq(weddingCard.numtxt - 1).addClass('ept')
                 } else {
-                    $('.numbtn').eq(0).addClass('ept')
+                    $('.numbtn').eq(1).addClass('ept')
                 }
             }, 100)
         }
@@ -693,7 +638,7 @@ weddingCard.getUrlParams = function() {
 weddingCard.api = {
     'page': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/previewPage/id/',
     'template': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/previewTemplate/id/',
-    'card': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/pageListByCardId/id/',
+    // 'card': 'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/pageListByCardId/id/',
     'reply': 'http://112.74.99.162:8088/wedding.php',//'https://www.hunliji.com/p/wedding/index.php/Home/APIInvationV2/reply',
     'sdkData': 'https://www.hunliji.com/v1/api/app/tracker/batch.json'
 }
@@ -731,9 +676,9 @@ weddingCard.sdk = (function() {
             eventable_type: 'CardV3',
             additional: {
                 ip: weddingCard.ip,
-                card_id: weddingCard.cardId,
+                // card_id: weddingCard.cardId,
                 num: weddingCard.rans(32)
             }
         })
     }, 3000)
-})()
+})();
