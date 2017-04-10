@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to list and delete branches
-tags: git branch list delete
+tags: [git,branch,list,delete]
 date: 2016-07-29 16:06 +800
 ---
 

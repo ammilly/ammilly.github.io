@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Win7 Git bash 出现Permission denied (publickey)错误
-tags: shell git bash github permission
+tags: [shell,git,bash,github,permission]
 date: 2016-07-22 13:50:00 +800
 ---
 

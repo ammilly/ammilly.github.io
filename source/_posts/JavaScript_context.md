@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScript上下文
-tags: JavaScript JS context
+tags: [JavaScript,JS,context]
 date: 2016-07-22 11:30:00 +800
 ---
 

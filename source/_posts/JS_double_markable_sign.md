@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JS中两个!!的用法
-tags: JavaScript JS markable double
+tags: [JavaScript,JS,markable,double]
 date: 2016-07-22 11:33:00 +800
 ---
 

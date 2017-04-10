@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Meta http-equiv属性值X-UA-Compatible
-tags: meta X-UA-Compatible http-equiv
+tags: [meta,X-UA-Compatible,http-equiv]
 date: 2016-07-27 17:00:00 +800
 ---
 

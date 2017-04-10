@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ES6 Class
-tags: es6 es2015 class
+tags: [es6,es2015,class]
 date: 2016-07-28 20:10:00 +800
 ---
 

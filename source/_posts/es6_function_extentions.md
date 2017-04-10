@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ES6 函数扩展
-tags: es6 es2015 function
+tags: [es6,es2015,function]
 date: 2016-07-22 13:18:00 +800
 ---
 

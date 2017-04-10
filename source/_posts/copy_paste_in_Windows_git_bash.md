@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 如何在Windows git bash中拷贝文件内容
-tags: git bash win7
+tags: [git,bash,win7]
 date: 2016-07-22 11:40:00 +800
 ---
 
