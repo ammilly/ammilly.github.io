@@ -13,10 +13,10 @@ date: 2017-04-25 15:44:00
 
 |            | Display: none | Visibility: hidden; | Opacity: 0; |
 | ---------- | :------------:  | :-------------------: | :-----------: |
-| Collapses  |  [x] |  X  |  X  |
-| Events     |   X  |  X  |  [x]  |
-| Taborder   |   X  |  X  |  [x]  |
-| Animatable |   X  |  X  |  [x]  |
+| Collapses  |  &#10003; |  X  |  X  |
+| Events     |   X  |  X  |  &#10003;  |
+| Taborder   |   X  |  X  |  &#10003;  |
+| Animatable |   X  |  X  |  &#10003;  |
 
 上表详细说明了这三种样式下，元素对应不同操作的反应：
 
