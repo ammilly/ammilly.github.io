@@ -26,7 +26,7 @@ date: 2017-04-25 16:50:00
 | ♥  | `&hearts;` | `&#9829;` | `&#x2665;` | heart symbol |
 | ❤  |  | `&#10084;` | `&#x2764;` |  |
 | ❥  |  | `&#10085;` | `&#x2765;` |  |
-| � |  | `&copy;` | `&#169;` | `&#xA9;` | copyright symbol |
+| � | `&copy;` | `&#169;` | `&#xA9;` | copyright symbol |
 | Ⓒ |  | `&#9400; `| `&#x24B8; `| C inside circle |
 |   | `&nbsp;` | `&#160;` | `&#xA0;` | non-breaking space |
 |   |  | `&#32;` | `&#x20;` | space |
