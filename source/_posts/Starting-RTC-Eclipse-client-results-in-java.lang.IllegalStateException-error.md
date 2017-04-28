@@ -1,7 +1,7 @@
 ---
 layout: post
-title: HTML code 实现特殊符号
-tags: [html,code,checkmark,symbol]
+title: 启动RTC Eclipse client 出现 java.lang.IllegalStateException 错误
+tags: [rtc,eclipse,java,IllegalStateException]
 date: 2017-04-28 14:50:00
 ---
 
