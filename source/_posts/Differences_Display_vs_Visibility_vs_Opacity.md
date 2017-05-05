@@ -7,6 +7,8 @@ date: 2017-04-25 15:44:00
 
 > 本文介绍隐藏HTML元素的三种方式之间的区别
 
+<!--more-->
+
 ## 需要隐藏元素时，可以采用3种方式：display: none; visibility: hidden; opacity: 0;。
 
 ### 三者之间的区别可以用下表说明：

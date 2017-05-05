@@ -7,6 +7,8 @@ date: 2017-04-28 14:50:00
 
 > 有时RTC Eclipse打开时，会出现一个报错窗口，提示：An internal error occurred during: "Computing local changes. java.lang.IllegalStateException"。
 
+<!--more-->
+
 ## 起因
 这个问题可能原因有很多，我遇到的情况是，当我多次强制关闭eclipse后，出现这个问题的可能性就很高。
 

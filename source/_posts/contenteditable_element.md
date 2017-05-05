@@ -7,6 +7,8 @@ date: 2017-05-05 11:10:00
 
 > 本文介绍一些最近新学习的关于contenteditable属性的使用心得。
 
+<!--more-->
+
 ## contenteditable 基础
 
 是H5提出的一种新的元素属性，可以让一些不可编辑的元素，如div, p, span等，可以进行编辑。
