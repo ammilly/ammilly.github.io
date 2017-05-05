@@ -325,38 +325,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>本文介绍一些最近新学习的关于contenteditable属性的使用心得。</p>
 </blockquote>
-<h2 id="contenteditable-基础"><a href="#contenteditable-基础" class="headerlink" title="contenteditable 基础"></a>contenteditable 基础</h2><p>是H5提出的一种新的元素属性，可以让一些不可编辑的元素，如div, p, span等，可以进行编辑。</p>
-<p>它的值共包括8种：<code>&quot;&quot;</code>, <code>&quot;true&quot;</code>, <code>&quot;false&quot;</code>, <code>inherit</code>, <code>&quot;events&quot;</code>, <code>&quot;caret&quot;</code>, <code>&quot;typing&quot;</code>, <code>&quot;plaintext-only&quot;</code>。<br>其中，各状态需要注意的点如下：</p>
-<ul>
-<li>“”和”true”均表示让元素为可编辑状态</li>
-<li>“false”表示元素不可编辑</li>
-<li>inherit表示该元素会继承其父元素的状态，也是默认的缺省状态</li>
-<li>“events”, “caret”, “typing” 和 “true”，这几种状态从左到右具有继承关系，即”caret”包含”events”属性的所有特性，”typing”包含”caret”的所有特性，”true”包含”typing”的所有特性</li>
-<li>“plaintext-only”已不支持</li>
-</ul>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
-<li>onInput - 当用户键入内容时触发</li>
-<li>onBlur - 当元素失去焦点时触发</li>
-<li>onKeyDown - 当用户使用键盘键入时，可获取当前用户按的键</li>
-</ul>
-<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
-<li>如何取消contenteditable元素的换行功能</li>
-</ol>
-<p>把元素加上onKeyDown事件监听，在事件处事函数中加上对keyCode的判断，若为<code>13</code>，即<code>Enter</code>键对应的code，则把动作取消即可。实现如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">onKeyDown(e) &#123;</div><div class="line">	<span class="keyword">if</span>(e.keyCode === <span class="number">13</span>) &#123;</div><div class="line">		e.preventDefault();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ol>
-<li>如何取消contenteditable元素的粘贴功能</li>
-</ol>
-<p>监听onPaste事件，直接取消动作。实现如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">onPaste(e) &#123;</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ol>
-<li><a href="http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/" target="_blank" rel="external">如何让contenteditable元素只能输入纯文本</a></li>
-</ol>
-<p>参考<br><a href="https://w3c.github.io/editing/contentEditable.html" target="_blank" rel="external">W3C ContentEditable</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/05/contenteditable_element/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -473,15 +451,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>有时RTC Eclipse打开时，会出现一个报错窗口，提示：An internal error occurred during: “Computing local changes. java.lang.IllegalStateException”。</p>
 </blockquote>
-<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这个问题可能原因有很多，我遇到的情况是，当我多次强制关闭eclipse后，出现这个问题的可能性就很高。</p>
-<h2 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h2><p>计算本地修改遇到问题，无法把项目中的修改文件在Local changes中展示出来，就无法知道哪些文件已经被修改。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>参考：<br><a href="http://www-01.ibm.com/support/docview.wss?uid=swg21699723" target="_blank" rel="external">Starting RTC Eclipse client results in java.lang.IllegalStateException error</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/28/Starting-RTC-Eclipse-client-results-in-java.lang.IllegalStateException-error/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -598,182 +577,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>本文介绍如何在Markdown文档中插入特殊符号。</p>
 </blockquote>
-<h2 id="使用HTML可方便地实现特殊符号的插入"><a href="#使用HTML可方便地实现特殊符号的插入" class="headerlink" title="使用HTML可方便地实现特殊符号的插入"></a>使用HTML可方便地实现特殊符号的插入</h2><p>下表详细列出特殊符号及其对应的HTML code。</p>
-<table>
-<thead>
-<tr>
-<th>Sign</th>
-<th>Name code</th>
-<th>Decimal code</th>
-<th>Hex code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&amp;</td>
-<td><code>&amp;amp;</code></td>
-<td><code>&amp;#38;</code></td>
-<td><code>&amp;#x26;</code></td>
-<td>ampersand (and) sign</td>
-</tr>
-<tr>
-<td>﹠</td>
-<td></td>
-<td><code>&amp;#65120;</code></td>
-<td><code>&amp;#xFE60;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>☑</td>
-<td></td>
-<td><code>&amp;#9745;</code></td>
-<td><code>&amp;#x2611;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>✓</td>
-<td></td>
-<td><code>&amp;#10003;</code></td>
-<td><code>&amp;#x2713;</code></td>
-<td>checkmark sign</td>
-</tr>
-<tr>
-<td>✔</td>
-<td></td>
-<td><code>&amp;#10004;</code></td>
-<td><code>&amp;#x2714;</code></td>
-<td>checkmark sign</td>
-</tr>
-<tr>
-<td>“</td>
-<td><code>&amp;quot;</code></td>
-<td><code>&amp;#34;</code></td>
-<td><code>&amp;#x22;</code></td>
-<td>quotation mark</td>
-</tr>
-<tr>
-<td>‘</td>
-<td><code>&amp;apos;</code></td>
-<td><code>&amp;#39;</code></td>
-<td><code>&amp;#x27;</code></td>
-<td>single quote</td>
-</tr>
-<tr>
-<td>`</td>
-<td></td>
-<td><code>&amp;#96;</code></td>
-<td><code>&amp;#x60;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>＂</td>
-<td></td>
-<td><code>&amp;#65282;</code></td>
-<td><code>&amp;#xFF02;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>＇</td>
-<td></td>
-<td><code>&amp;#65287;</code></td>
-<td><code>&amp;#xFF07;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>♥</td>
-<td><code>&amp;hearts;</code></td>
-<td><code>&amp;#9829;</code></td>
-<td><code>&amp;#x2665;</code></td>
-<td>heart symbol</td>
-</tr>
-<tr>
-<td>❤</td>
-<td></td>
-<td><code>&amp;#10084;</code></td>
-<td><code>&amp;#x2764;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>❥</td>
-<td></td>
-<td><code>&amp;#10085;</code></td>
-<td><code>&amp;#x2765;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>�</td>
-<td><code>&amp;copy;</code></td>
-<td><code>&amp;#169;</code></td>
-<td><code>&amp;#xA9;</code></td>
-<td>copyright symbol</td>
-</tr>
-<tr>
-<td>Ⓒ</td>
-<td></td>
-<td><code>&amp;#9400;</code></td>
-<td><code>&amp;#x24B8;</code></td>
-<td>C inside circle</td>
-</tr>
-<tr>
-<td></td>
-<td><code>&amp;nbsp;</code></td>
-<td><code>&amp;#160;</code></td>
-<td><code>&amp;#xA0;</code></td>
-<td>non-breaking space</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td><code>&amp;#32;</code></td>
-<td><code>&amp;#x20;</code></td>
-<td>space</td>
-</tr>
-<tr>
-<td>␠</td>
-<td></td>
-<td><code>&amp;#9248;</code></td>
-<td><code>&amp;#x2420;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>␣</td>
-<td></td>
-<td><code>&amp;#9251;</code></td>
-<td><code>&amp;#x2423;</code></td>
-<td>line space</td>
-</tr>
-<tr>
-<td>™</td>
-<td><code>&amp;trade;</code></td>
-<td><code>&amp;#8482;</code></td>
-<td><code>&amp;#x2122;</code></td>
-<td>trademark symbol</td>
-</tr>
-<tr>
-<td>®</td>
-<td><code>&amp;reg;</code></td>
-<td><code>&amp;#174;</code></td>
-<td><code>&amp;#x00AE;</code></td>
-<td>registered trademark symbol</td>
-</tr>
-<tr>
-<td>€</td>
-<td><code>&amp;euro;</code></td>
-<td><code>&amp;#8364;</code></td>
-<td><code>&amp;#x20AC;</code></td>
-<td>Euro symbol</td>
-</tr>
-</tbody>
-</table>
-<p>目前先总结这么多，随后用到新的还会继续补充。</p>
-<p>[参考]<br><a href="http://www.rapidtables.com/web/html/html-codes.htm" target="_blank" rel="external">http://www.rapidtables.com/web/html/html-codes.htm</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/25/HTML_code_实现特殊符号/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -890,58 +703,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>本文介绍隐藏HTML元素的三种方式之间的区别</p>
 </blockquote>
-<h2 id="需要隐藏元素时，可以采用3种方式：display-none-visibility-hidden-opacity-0-。"><a href="#需要隐藏元素时，可以采用3种方式：display-none-visibility-hidden-opacity-0-。" class="headerlink" title="需要隐藏元素时，可以采用3种方式：display: none; visibility: hidden; opacity: 0;。"></a>需要隐藏元素时，可以采用3种方式：display: none; visibility: hidden; opacity: 0;。</h2><h3 id="三者之间的区别可以用下表说明："><a href="#三者之间的区别可以用下表说明：" class="headerlink" title="三者之间的区别可以用下表说明："></a>三者之间的区别可以用下表说明：</h3><table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">Display: none</th>
-<th style="text-align:center">Visibility: hidden;</th>
-<th style="text-align:center">Opacity: 0;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Collapses</td>
-<td style="text-align:center">&#10003;</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-</tr>
-<tr>
-<td>Events</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">&#10003;</td>
-</tr>
-<tr>
-<td>Taborder</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">&#10003;</td>
-</tr>
-<tr>
-<td>Animatable</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">&#10003;</td>
-</tr>
-</tbody>
-</table>
-<p>上表详细说明了这三种样式下，元素对应不同操作的反应：</p>
-<ul>
-<li>Collapses - 表示元素是否占用文档空间，即是否存在于文档流中。</li>
-<li>Events - 元素对事件的反应，如click事件。</li>
-<li>Taborder - 元素是否包含在taborder中，即tab可否获取焦点。</li>
-<li>Animatable - 是否可以在可见与不可见元素之间过渡动画。</li>
-</ul>
-<blockquote>
-<p>由此可知，如果想让一个元素彻底消失，不占用任何空间，使用display: none;。<br>如果想让元素在可见的时候具有动画效果，使用opacity: 0;<br>而visibility: hidden;的元素仍然占用文档空间。</p>
-</blockquote>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/25/Differences_Display_vs_Visibility_vs_Opacity/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1058,20 +829,16 @@
 
       
         
-          
-            <blockquote>
-<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+          <blockquote>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 </blockquote>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/how-to-use-hexo/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
