@@ -154,7 +154,7 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  Twitter: twitter
+  #Twitter: twitter
   Weibo: weibo
 
 
