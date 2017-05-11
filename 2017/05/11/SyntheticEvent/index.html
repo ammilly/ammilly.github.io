@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SyntheticEvent,react,javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="本文简要介绍React事件系统中的合成事件(SyntheticEvent)，SyntheticEvent是React对浏览器原生事件跨游览器的封装，和原生事件一样支持stopPropagation()、preventDefault()接口，并且这些接口是跨游览器兼容的。">
+<meta name="keywords" content="SyntheticEvent,react,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="合成事件（SyntheticEvent）">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/SyntheticEvent/index.html">
+<meta property="og:site_name" content="Amy's blog">
+<meta property="og:description" content="本文简要介绍React事件系统中的合成事件(SyntheticEvent)，SyntheticEvent是React对浏览器原生事件跨游览器的封装，和原生事件一样支持stopPropagation()、preventDefault()接口，并且这些接口是跨游览器兼容的。">
+<meta property="og:updated_time" content="2017-05-11T08:48:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="合成事件（SyntheticEvent）">
+<meta name="twitter:description" content="本文简要介绍React事件系统中的合成事件(SyntheticEvent)，SyntheticEvent是React对浏览器原生事件跨游览器的封装，和原生事件一样支持stopPropagation()、preventDefault()接口，并且这些接口是跨游览器兼容的。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/11/SyntheticEvent/"/>
+
+
+
+
+
+  <title>合成事件（SyntheticEvent） | Amy's blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Amy's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/SyntheticEvent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amy Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Amy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                合成事件（SyntheticEvent）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T16:40:00+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文简要介绍React事件系统中的合成事件(<code>SyntheticEvent</code>)，<code>SyntheticEvent</code>是React对浏览器原生事件跨游览器的封装，和原生事件一样支持<code>stopPropagation()</code>、<code>preventDefault()</code>接口，并且这些接口是跨游览器兼容的。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>如果需要使用浏览器的原生事件，可以通过<code>nativeEvent</code>属性获得。每个<code>SyntheticEvent</code>对象都具有以下属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">boolean bubbles</div><div class="line">boolean cancelable</div><div class="line">boolean defaultPrevented</div><div class="line">boolean isTrusted</div><div class="line">boolean isDefaultPrevented()</div><div class="line">boolean isPropagationStopped()</div><div class="line"></div><div class="line"><span class="keyword">void</span> preventDefault()</div><div class="line"><span class="keyword">void</span> stopPropagation()</div><div class="line"></div><div class="line">string type</div><div class="line"></div><div class="line">number eventPhase</div><div class="line">number timeStamp</div><div class="line"></div><div class="line">DOMEvent nativeEvent</div><div class="line">DOMEventTarget currentTarget</div><div class="line">DOMEventTarget target</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong><em>注意：</em></strong><br>React v0.14版本，在事件处理程序中返回<code>false</code>并不会停止事件冒泡，取而代之，如果需要应手动触发<code>e.stopPropagation()</code>或<code>e.preventDefault()</code>。</p>
+</blockquote>
+<h3 id="事件池-Event-Pooling"><a href="#事件池-Event-Pooling" class="headerlink" title="事件池 (Event Pooling)"></a>事件池 (<code>Event Pooling</code>)</h3><p><code>SyntheticEvent</code>是池化的，就意味着<code>SyntheticEvent</code>对象将会被重用，且所有属性都会在事件回调被调用后清空（<code>nullified</code>）。这是出于性能考虑，因此，无法异步访问事件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onClick</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(event); <span class="comment">// =&gt; nullified object.</span></div><div class="line">    <span class="built_in">console</span>.log(event.type); <span class="comment">// =&gt; "click"</span></div><div class="line">    <span class="keyword">const</span> eventType = event.type; <span class="comment">// =&gt; "click"</span></div><div class="line"></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(event.type); <span class="comment">// =&gt; null</span></div><div class="line">        <span class="built_in">console</span>.log(eventType); <span class="comment">// =&gt; "click"</span></div><div class="line">    &#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="comment">// Won't work. this.state.clickEvent will only contain null values.</span></div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">clickEvent</span>: event&#125;);</div><div class="line"></div><div class="line">    <span class="comment">// You can still export event properties.</span></div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">eventType</span>: event.type&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong><em>注意：</em></strong><br>如果想异步访问事件属性，需要在事件上调用<code>event.persist()</code>，这会从池中移除<code>SyntheticEvent</code>并允许保留对事件的引用。   </p>
+</blockquote>
+<h3 id="支持的事件"><a href="#支持的事件" class="headerlink" title="支持的事件"></a>支持的事件</h3><p>React将事件统一化，使事件在不同的浏览器上保持一致的属性。<br>以下的事件处理程序在事件冒泡阶段被触发，如果要注册事件捕获程序，在所有的事件名后加上<code>Capture</code>即可，例如，使用<code>onClickCapture</code>来处理捕获阶段的点击事件。   </p>
+<ul>
+<li>Clipboard Events</li>
+<li>Composition Events</li>
+<li>Keyboard Events</li>
+<li>Focus Events</li>
+<li>Form Events</li>
+<li>Mouse Events</li>
+<li>Selection Events</li>
+<li>Touch Events</li>
+<li>UI Events</li>
+<li>Wheel Events</li>
+<li>Media Events</li>
+<li>Image Events</li>
+<li>Animation Events</li>
+<li>Transition Events</li>
+</ul>
+<h4 id="Clipboard-Events"><a href="#Clipboard-Events" class="headerlink" title="Clipboard Events"></a>Clipboard Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onCopy onCut onPaste</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMDataTransfer clipboardData</div></pre></td></tr></table></figure></p>
+<h4 id="Composition-Events"><a href="#Composition-Events" class="headerlink" title="Composition Events"></a>Composition Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onCompositionEnd onCompositionStart onCompositionUpdate</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string data</div></pre></td></tr></table></figure></p>
+<h4 id="Keyboard-Events"><a href="#Keyboard-Events" class="headerlink" title="Keyboard Events"></a>Keyboard Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onKeyDown onKeyPress onKeyUp</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">boolean altKey</div><div class="line">boolean ctrlKey</div><div class="line">boolean getModifierState(key)</div><div class="line">boolean metaKey</div><div class="line">boolean repeat</div><div class="line">boolean shiftKey</div><div class="line"></div><div class="line">number charCode</div><div class="line">number keyCode</div><div class="line">number location</div><div class="line">number which</div><div class="line"></div><div class="line">string key</div><div class="line">string locale</div></pre></td></tr></table></figure></p>
+<h4 id="Focus-Events"><a href="#Focus-Events" class="headerlink" title="Focus Events"></a>Focus Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onFocus onBlur</div></pre></td></tr></table></figure></p>
+<p>These focus events work on all elements in the React DOM, not just form elements.  </p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMEventTarget relatedTarget</div></pre></td></tr></table></figure></p>
+<h4 id="Form-Events"><a href="#Form-Events" class="headerlink" title="Form Events"></a>Form Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onChange onInput onSubmit</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMEventTarget relatedTarget</div></pre></td></tr></table></figure></p>
+<h4 id="Mouse-Events"><a href="#Mouse-Events" class="headerlink" title="Mouse Events"></a>Mouse Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onClick onContextMenu onDoubleClick onDrage onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp</div></pre></td></tr></table></figure></p>
+<p>The <code>onMouseEnter</code> and <code>onMouseLeave</code> events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.   </p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">boolean altKey</div><div class="line">boolean ctrlKey</div><div class="line">boolean getModifierState(key)</div><div class="line">boolean metaKey</div><div class="line">boolean shiftKey</div><div class="line"></div><div class="line">number button</div><div class="line">number buttons</div><div class="line">number clientX</div><div class="line">number clientY</div><div class="line">number pageX</div><div class="line">number pageY</div><div class="line">number screenX</div><div class="line">number screenY</div><div class="line"></div><div class="line">DOMEventTarget relatedTarget</div></pre></td></tr></table></figure></p>
+<h4 id="Selection-Events"><a href="#Selection-Events" class="headerlink" title="Selection Events"></a>Selection Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onSelect</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMEventTarget relatedTarget</div></pre></td></tr></table></figure></p>
+<h4 id="Touch-Events"><a href="#Touch-Events" class="headerlink" title="Touch Events"></a>Touch Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onTouchCancel onTouchEnd onTouchMove onTouchStart</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">boolean altKey</div><div class="line">boolean getModifierState(key)</div><div class="line">boolean ctrlKey</div><div class="line">boolean metaKey</div><div class="line">boolean shiftKey</div><div class="line"></div><div class="line">DOMTouchList targetTouches</div><div class="line">DOMTouchList touches</div></pre></td></tr></table></figure></p>
+<h4 id="UI-Events"><a href="#UI-Events" class="headerlink" title="UI Events"></a>UI Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onScroll</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">number detail</div><div class="line">DOMAbstractView view</div></pre></td></tr></table></figure></p>
+<h4 id="Wheel-Events"><a href="#Wheel-Events" class="headerlink" title="Wheel Events"></a>Wheel Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onWheel</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">number deltaMode</div><div class="line">number deltaX</div><div class="line">number deltaY</div><div class="line">number deltaZ</div></pre></td></tr></table></figure></p>
+<h4 id="Media-Events"><a href="#Media-Events" class="headerlink" title="Media Events"></a>Media Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend onTimeUpdate onVolumeChange onWaiting</div></pre></td></tr></table></figure></p>
+<h4 id="Image-Events"><a href="#Image-Events" class="headerlink" title="Image Events"></a>Image Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onLoad onError</div></pre></td></tr></table></figure></p>
+<h4 id="Animation-Events"><a href="#Animation-Events" class="headerlink" title="Animation Events"></a>Animation Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onAnimationStart onAnimationEnt onAnimationIteration</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">string animationName</div><div class="line">string pseudoElement</div><div class="line">float elapsedTime</div></pre></td></tr></table></figure></p>
+<h4 id="Transition-Events"><a href="#Transition-Events" class="headerlink" title="Transition Events"></a>Transition Events</h4><p>Event names:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onTransitionEnd</div></pre></td></tr></table></figure></p>
+<p>Properties:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">string propertyName</div><div class="line">string pseudoElement</div><div class="line">float elapsedTime</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SyntheticEvent/" rel="tag"># SyntheticEvent</a>
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/05/contenteditable_element/" rel="prev" title="contenteditable 使用心得">
+                contenteditable 使用心得 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Amy Zhao" />
+          <p class="site-author-name" itemprop="name">Amy Zhao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://mazhichao300.github.io/" title="Zhichao's Blog" target="_blank">Zhichao's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件池-Event-Pooling"><span class="nav-number">2.</span> <span class="nav-text">事件池 (Event Pooling)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持的事件"><span class="nav-number">3.</span> <span class="nav-text">支持的事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Clipboard-Events"><span class="nav-number">3.1.</span> <span class="nav-text">Clipboard Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Composition-Events"><span class="nav-number">3.2.</span> <span class="nav-text">Composition Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Keyboard-Events"><span class="nav-number">3.3.</span> <span class="nav-text">Keyboard Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Focus-Events"><span class="nav-number">3.4.</span> <span class="nav-text">Focus Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Form-Events"><span class="nav-number">3.5.</span> <span class="nav-text">Form Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mouse-Events"><span class="nav-number">3.6.</span> <span class="nav-text">Mouse Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selection-Events"><span class="nav-number">3.7.</span> <span class="nav-text">Selection Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Touch-Events"><span class="nav-number">3.8.</span> <span class="nav-text">Touch Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UI-Events"><span class="nav-number">3.9.</span> <span class="nav-text">UI Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wheel-Events"><span class="nav-number">3.10.</span> <span class="nav-text">Wheel Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Media-Events"><span class="nav-number">3.11.</span> <span class="nav-text">Media Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Image-Events"><span class="nav-number">3.12.</span> <span class="nav-text">Image Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Animation-Events"><span class="nav-number">3.13.</span> <span class="nav-text">Animation Events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transition-Events"><span class="nav-number">3.14.</span> <span class="nav-text">Transition Events</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amy Zhao</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
